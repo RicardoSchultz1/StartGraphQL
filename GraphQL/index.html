@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consulta API Simples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    pre {
+      background: #f7f7f7;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Resultado da API:</h1>
+    <pre id="output">Carregando...</pre>
+  </div>
+
+  <script>
+    // Informe apenas o link da API aqui
+    const apiUrl = "https://jsonplaceholder.typicode.com/todos/1";
+
+    async function carregarDados() {
+      try {
+        const resposta = await fetch(apiUrl);
+        const dados = await resposta.json();
+        document.getElementById("output").textContent = JSON.stringify(dados, null, 2);
+      } catch (erro) {
+        document.getElementById("output").textContent = "Erro: " + erro.message;
+      }
+    }
+
+    carregarDados();
+  </script>
+</body>
+</html>
